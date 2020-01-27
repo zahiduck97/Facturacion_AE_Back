@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student's profile</title>
+	<head>
+	<style type="text/css">
+		body{
+			height: 100%;
+			margin: 0;
+			padding: 0px;
+			font-size: 10px;
+			color: rgb(33,33,33);
+		}
+		
+		img{
+			width: 100%;
+			position: relative;
+			z-index: 1;
+			height: 100%;
+		}
+		.container_tabla{
+            width: 920px;
+            z-index: 2;
+            top: 280px;;
+            left: 100px;
+            position: absolute;
+        }
+
+		.clausulas{
+			line-height: 3mm;
+			width: 920px;
+			font-size: 12px;
+		}
+
+		.row_tabla{
+			width: 100%;
+		}
+
+		table,th,td{
+			border: 1px solid black;
+		}
+
+		td{
+			padding-left: 5px;
+		}
+
+		.fecha{
+			position: absolute;
+			z-index: 3;
+			top: 1045px;
+			left: 100px;
+			color: blue;
+			font-weight: bold;
+			font-size: 23px;
+		}
+
+		.barcode{
+			position:absolute;
+			z-index: 3;
+			top: 940px;
+			left: 310px;
+			width: 160px;
+            height: 160px;
+		}
+		ul{
+			text-decoration: none;
+		}
+		
+	</style>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
+</head>
+<body>
+	<img src="https://scontent-dfw5-1.xx.fbcdn.net/v/t1.15752-9/p1080x2048/81947463_445969826309234_7412464939819859968_n.jpg?_nc_cat=101&_nc_ohc=1K2HcCX2QXIAX_7PxBw&_nc_ht=scontent-dfw5-1.xx&_nc_tp=1&oh=53b9460fe42f33fab4270cf979bd1290&oe=5E97C8C3">
+
+	<div class="container_tabla">
+		<table>
+			<colgroup>
+				<col width="5%"><col width="5%">
+				<col width="5%"><col width="5%">
+				<col width="5%"><col width="5%">
+				<col width="5%"><col width="5%">
+				<col width="5%"><col width="5%">
+				<col width="5%"><col width="5%">
+			</colgroup>
+
+			<input type="hidden" id="servicio" value="{{ Servicio }}">
+			<tr>
+				<th colspan="6" class="table-secondary font-weight-bold" id="tipo_servicio">Tipo de servicio</th>
+			</tr>
+
+			<tr>
+				<th colspan="4"> <strong>No. de Solicitud:</strong> {{ solicitud }}   <span id="bar-txt"></span></th>
+				<th colspan="1"> <strong>Elabora:</strong> {{ reviso }} </th>
+				<th colspan="1"><strong>Fecha:</strong> {{ fecha }} </th>  
+			</tr>
+
+			
+			<tr class="text-center table-secondary font-weight-bold"> <th colspan="6"> DATOS DEL CLIENTE  </th></tr>
+
+			<tr>
+				<td colspan="6"><strong>Denominacion o Razon Social:</strong> {{ razon }}</td>
+			</tr>
+
+			<tr>
+				<td colspan="4"><strong> RFC:</strong> {{ rfc }} </th>
+				<td colspan="2"> <strong>No. de Contrato:</strong> {{ contrato }}</td>
+			</tr>
+
+			<tr>
+				<th class="font-weight-bold">Domicilio Fiscal</th>
+				<td colspan="3">Calle o Vialidad: {{ calle }} </td>
+				<th>No. Ext. {{ exterior }} </th>
+				<th>No. Int. {{ interior }} </th>
+			</tr> 
+
+			<tr>
+				<td colspan="5">Colonia: {{ colonia }} </td>
+				<td colspan="1">C.P.: {{ cp }} </td>
+			</tr>
+			
+			<tr>
+				<td colspan="3">Alcaldia o Municipio: {{ municipio }} </td>
+				<td colspan="3">Entidad Federativa: {{ estado }} </td>
+			</tr>
+		
+			<tr>
+				<td colspan="3"><strong>Representante legal:</strong> {{ representante }} </td>
+				<td colspan="3"><strong>Tramitador:</strong> {{ tramitador }}</td>
+			</tr>
+			
+			<tr>
+				<td colspan="3">Telefono: {{ telefono }} </td>
+				<td colspan="3">E-mail: {{ email }} </td>
+			</tr>
+		
+			<tr class="table-secondary text-center" style="height: 10px;"> 
+				<th colspan="6 " class="font-weight-bold"> INFORMACION DEL PRODUCTO PARA DICTAMEN / CONSTANCIA </th> 
+			</tr>
+
+	
+			<tr class="font-weight-bold"> <th colspan="6"> Norma en la que solicita el servicio: {{ norma }}  </th></tr>	
+		
+			<tr> <td colspan="6">Denominación del Producto: {{ nombre_producto }} </td></tr>
+		
+			<tr>
+				<td colspan="3"> Marca: {{ marca_producto }} </td>
+				<td colspan="3"> País de Origen: {{ pais_producto }} </td>
+			</tr>
+
+			<tr> <td colspan="6"> Modelo (s): {{ modelo_producto }} </td></tr>
+	
+			<tr>
+				<td colspan="3"> Presentación: {{ presentacion_producto }} </td>
+				<td colspan="3">Contenido: {{ contenido_producto }} </td>
+			</tr>
+
+			<input type="hidden" id="input" value="{{anexos}}">
+
+			<tr>
+				<td colspan="6" id="anexos"> <strong> Información anexa para Constancia:     </strong> 
+			</tr>
+
+			<tr class=" text-center table-secondary "> <th colspan="6"> INFORMACION ADICIONAL SOLO PARA DICTAMEN  </th></tr>
+		
+			
+			<tr>
+				<td colspan="3">No. de Pedimento: {{ pedimento }} </td>
+				<td colspan="3">No. de Factura Comercial: {{ factura }}  </td>
+			</tr> 
+		
+			<tr> 
+				<td colspan="3"> Tamaño de Lote: {{ lote }}</td>
+				<td colspan="3">Fraccion Arancelaria: {{ fraccion }}</td>
+			</tr>
+		
+			<input type="hidden" id="domicilio">
+			
+			<tr>
+				<td colspan="6" id="regimen"> Regimen </td>
+			</tr>
+
+			<tr>
+				<td colspan="6" id="anexosDictamen-paste"> </td>
+			</tr>
+		
+
+			<tr>
+				<tr class=" text-center table-secondary"> <th colspan="6"> DATOS PARA LA VISITA DE VERIFICACIÓN EN SITIO  </th></tr>
+			</tr>
+		
+			<tr> <td colspan="6"> Nombre, denominación o razón social del establecimiento: {{ razon }} </td></tr>
+			
+			<tr> 
+				<td>Domicilio:</td>
+				<td colspan="3">{{ calle_verificacion }} </td>
+				<td>No. Ext. {{ exterior_v }}</td>
+				<td>No. Int. {{ interior_v }}</td>
+			</tr>
+
+			<tr>
+				<td colspan="5">Colonia: {{ colonia_verificacion }} </td>
+				<td>C.P.: {{ codigo_postal_verificacion }} </td>
+			</tr>
+		
+			<tr>
+				<td colspan="2"> Alcaldía o Municipio: {{ municipio_verificacion }} </td>
+				<td colspan="2"> Estado: {{ estado_verificacion }}</td>
+				<td colspan="2"> Telefono: {{ telefono_verificacion }} </td>
+			</tr>
+		
+			<tr> <td colspan="6">Nombre del contacto para atender la verificación: {{ contacto }} </td></tr>
+		
+			<tr> <td colspan="6">Fecha Programada para la verificacion en sitio: {{ fecha_verificacion }} </td></tr>
+		
+		</table>
+
+		<div class="clausulas">
+			<div class="text-center"> CLAUSULAS</div>
+			<ol>
+				<li>La presente solicitud tiene una vigencia de 30 (treinta) días naturales para ser utilizada a partir de su expedición, terminando este plazo se debe tramitar una nueva con la tarifa correspondiente.</li>
+				<li>El uso indebido de esta solicitud es causa de rescisión del contrato de prestación de servicios de verificación, así como de las sanciones legales que correspondan.</li>
+				<li>Esta solicitud no tiene validez para los fines de importación si no tiene sello y el código QR con datos electrónicos de la UVA. </li>
+				<li>En caso de que no se solicite la verificación de los productos amparados en esta solicitud, se emitirá la Negación del documento y se notificará a la DGN de la Secretaria de Economía y SAT. </li>
+				<li>Esta solicitud solo podrá ser cancelada por escrito a solicitud del Representante Legal, bajo protesta de decir verdad que no fue utilizada para el proceso de importación.</li>
+				<li>
+					<strong>Para el servicio de Dictamen:</strong>
+					<ul>
+						<li>La liberación de su producto ante aduana debe hacerse presentando esta solicitud en original o copia digital, junto con una copia del contrato de prestación de servicios de verificación.</li>
+						<li>El titular deberá solicitar la Visita de Verificación en Sitio dentro del plazo de 15 días naturales siguientes a la fecha en que se concluya el despacho aduanero, conforme a la legislación aduanera. Dicho plazo será de 40 días naturales si la mercancía a etiquetar requiere más de 10,000 etiquetas.</li>
+					</ul>
+				</li>
+			</ol>
+			<p><strong>Aviso de privacidad:</strong> A&E Intertrade S.A de C.V., con domicilio fiscal en Calle Monterrey 387, Ciudad de México, le informa que los datos personales que usted nos proporcione se utilizarán con la finalidad de conocer sus necesidades, comunicarle y proponerle algún servicio que ofrece A&E Intertrade S.A de C.V.   y/o en su caso, para los fines descritos en el Aviso de Privacidad, mismo que Usted podrá consultar en la página www.aeintertrade.com.mx</p>
+		</div>
+
+
+		<p  class ="fecha">{{ fecha }}</p>
+		
+		<img src="https://www.codigos-qr.com/qr/php/qr_img.php?d=UVNOM 091  AE INTERTRADE SA DE CV  ELABORA: RICARDO LUNA MARTÍNEZ   201211829&s=8&e=" alt="Generador de Códigos QR Codes" class="barcode" id="barcode"/>
+
+
+		<input type="hidden" id="anexosDictamen" value="{{ anexos_dictamen }}">
+		<input type="hidden" value="{{ empleado }}" id="empleado">
+		<input type="hidden" value="{{ solicitud }}" id="solicitud"> -->
+		
+	</div>
+	
+	<script>
+
+		// INITIALIZATIONS
+		let cadena = document.getElementById('input').value;
+		let anexos = cadena.split(',');
+		let array='Información anexa para Constancia:';
+		let array2='Documento Anexados:';
+		let anexos_array = ["etiqueta", "empaque", "imagenes", "instructivo", 'garantia'];
+		let anexos_array2 = ["pedimento", "factura"];
+		let txt = document.getElementById('bar-txt');
+		let barcode = document.getElementById('barcode');
+		let servicio = document.getElementById('servicio').value;
+		let dictamen = document.getElementById('anexosDictamen').value;
+		let domicilio = document.getElementById('domicilio').value;
+		let nombre = document.getElementById('empleado').value;
+		let solicitud = document.getElementById('solicitud').value;
+
+
+		// FUNCTIONS 
+		String.prototype.capitalize = function() {
+    		return this.charAt(0).toUpperCase() + this.slice(1);
+		}
+
+		// CODE
+		for(let i=0; i<5; i++){
+			if(anexos.includes(i.toString())){
+				let temp = anexos_array[i].capitalize();
+				array += `\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 ${temp} (X)`;
+			} else {
+				let temp = anexos_array[i].capitalize();
+				array += `\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 ${temp} ( )`;
+			}
+		}
+
+		for(let i=0; i<2; i++){
+			if(dictamen.includes(i.toString())){
+				let temp = anexos_array2[i].capitalize();
+				array2 += `\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 ${temp} (X)`;
+			} else {
+				let temp = anexos_array2[i].capitalize();
+				array2 += `\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 ${temp} ( )`;
+			}
+		}
+
+		if(domicilio == 'P' ){
+			document.getElementById('regimen').textContent = `Régimen Aduanal: \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Almacen Particular (X) \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Déposito Fiscal ( )`;
+		}else {
+			document.getElementById('regimen').textContent = `Régimen Aduanal: \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Almacen Particular ( ) \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Déposito Fiscal (X)`;
+		}
+		
+		if(servicio == 'C'){
+			document.getElementById('tipo_servicio').textContent = ` Tipo de Servicio \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Constancia (X) \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0  Dictamen ( ) \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Modificacion ( )`;
+		} else if(servicio == 'D'){
+			document.getElementById('tipo_servicio').textContent = ` Tipo de servicio \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Constancia ( ) \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Dictamen (X) \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Modificacion ( )`;
+		}else {
+			document.getElementById('tipo_servicio').textContent = ` Tipo de servicio \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Constancia ( ) \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Dictamen ( ) \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0\u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 \u00A0 Modificacion (X)`;
+		}
+
+		document.getElementById('anexos').textContent = array;
+		document.getElementById('anexosDictamen-paste').textContent = array2;
+		barcode.src = "https://www.codigos-qr.com/qr/php/qr_img.php?d=UVNOM 091  AE INTERTRADE SA DE CV  ELABORA: "+nombre+" "+solicitud+"&s=8&e="	
+	</script>
+
+</body>
+</html>
